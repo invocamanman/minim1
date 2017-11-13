@@ -6,6 +6,9 @@ public class Producto implements Comparable<Producto>{
     String nombre;
     Double precio;
 
+    public Producto() {
+    }
+
     public Producto(String nombre, Double precio, int ventas) {
         this.nombre = nombre;
         this.precio = precio;

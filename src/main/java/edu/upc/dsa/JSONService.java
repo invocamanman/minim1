@@ -28,9 +28,11 @@ public class JSONService {
     @GET
     @Path("/gotproductosprecio")
     @Produces(MediaType.APPLICATION_JSON)
-    public Producto getProductoprecio() {
+    public Collection<Producto> getProductoprecio() {
 
-        return ProductManagerImpl.getInstance().Ordenarprecio().get(1);
+
+        return (Collection<Producto>)ProductManagerImpl.getInstance().Ordenarprecio();
+
 
     }
 
