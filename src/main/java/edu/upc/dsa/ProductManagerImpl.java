@@ -46,7 +46,7 @@ public class ProductManagerImpl implements ProductManager{
 
 
     }
-    public ArrayList<Producto> Ordenarprecio(){
+    public ArrayList<Producto>  Ordenarprecio(){
 
         ArrayList<Producto> productos = new ArrayList<Producto>();
         for (Producto o: this.productos.values()) {

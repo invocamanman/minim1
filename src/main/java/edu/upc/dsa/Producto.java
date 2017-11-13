@@ -3,8 +3,14 @@ package edu.upc.dsa;
 import java.util.Comparator;
 
 public class Producto implements Comparable<Producto>{
-    private String nombre;
-    private Double precio;
+    String nombre;
+    Double precio;
+
+    public Producto(String nombre, Double precio, int ventas) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.ventas = ventas;
+    }
 
     public Producto(String nombre, Double precio) {
         this.nombre = nombre;
@@ -12,7 +18,7 @@ public class Producto implements Comparable<Producto>{
         this.ventas = 0;
     }
 
-    private int ventas;
+    int ventas;
 
     public String getNombre() {
         return nombre;

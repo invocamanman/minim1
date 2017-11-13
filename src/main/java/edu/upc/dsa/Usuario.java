@@ -23,11 +23,13 @@ public class Usuario {
     String nombre;
     Vector<Pedido> pedidos;
 
+
     public void añadirpedido(Pedido p){
         pedidos.add(p);
     }
 
     public Usuario(String nombre) {
+        pedidos = new Vector<Pedido>();
         this.nombre = nombre;
     }
 }
