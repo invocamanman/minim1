@@ -47,10 +47,27 @@ public class Producto implements Comparable<Producto>{
         this.ventas = ventas;
     }
 
+    public void aumentarVendas(int venta){
+        this.ventas=this.ventas+venta;
+    }
+
 
     @Override
     public int compareTo(Producto P) {
 
         return (int)(this.precio-P.getPrecio());
     }
+
+    public static Comparator<Producto> Productoventascomparator
+            = new Comparator<Producto>() {
+
+        public int compare(Producto producto1, Producto producto2) {
+
+
+
+            return producto2.getVentas()-producto1.getVentas();
+
+        }
+
+    };
 }

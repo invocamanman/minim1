@@ -48,14 +48,14 @@ public class ProductManagerImpl implements ProductManager{
     }
     public ArrayList<Producto>  Ordenarprecio(){
 
-        ArrayList<Producto> productos = new ArrayList<Producto>();
+        ArrayList<Producto> productoslist = new ArrayList<Producto>();
         for (Producto o: this.productos.values()) {
-            productos.add(o);
+            productoslist.add(o);
 
         }
-        Collections.sort(productos);
+        Collections.sort(productoslist);
         logger.info("retorn vector ordenat");
-        return productos;
+        return productoslist;
     }
 
 
@@ -73,6 +73,12 @@ public class ProductManagerImpl implements ProductManager{
         p.getUsuario().añadirpedido(p);
         logger.info("l'usuari ara te un pedido mes");
 
+        for(Comanda c : p.getComandas()){
+            c.getProducto().aumentarVendas(c.getCantidad());
+        }
+
+
+
         //bucle sumar ventas
     }
 
@@ -86,7 +92,22 @@ public class ProductManagerImpl implements ProductManager{
 
     public void listaproductosordenadoventas(){
 
+        ArrayList<Producto> productoslist = new ArrayList<Producto>(this.productos.values());
+
+        /*
+        Collections.sort(productos, new Comparator<Producto>() {
+            @Override
+            public int compare(Producto O1, Producto O2) {
+                return O2.getVentas()-O1.getVentas();
+            }
+        });
+        */
+       Collections.sort(productoslist,Producto.Productoventascomparator);
+
     }
+
+
+
 
 
 
