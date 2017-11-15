@@ -16,14 +16,25 @@ public class JSONService {
     public JSONService() {}
 
 
-
-   /* @GET
+/*
+    @GET
     @Path("/gotproductos/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario getUsuario(@PathParam("nombre") String nombre) {
-        return Usuariomap.getInstance().mapa.get(nombre);
+    public Vector<Pedido> getproductosusuario(@PathParam("nombre") String nombre) {
+        return ProductManagerImpl.getInstance().usuarios.get(nombre).getPedidos();
     }
-*/
+
+
+    @GET
+    @Path("/gotproductosventas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Producto> getProductosventas() {
+
+
+        return (Collection<Producto>)ProductManagerImpl.getInstance().listaproductosordenadoventas();
+
+
+    }
 
     @GET
     @Path("/gotproductosprecio")
@@ -35,6 +46,7 @@ public class JSONService {
 
 
     }
+
 
     @POST
     @Path("/post/hacer")
@@ -67,7 +79,7 @@ public class JSONService {
         return Response.status(201).entity("hecho").build();
     }
 
-
+*/
 
 
 

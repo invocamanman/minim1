@@ -65,11 +65,6 @@ public class ProductManagerImpl implements ProductManager{
         Pedido p = new Pedido(usuarios.get(nombre),comandas);
         pila.push(p);
         logger.info("numero stacks despres"+pila.size());
-
-    }
-
-    public void Servirpedido(){
-        Pedido p = pila.pop();
         p.getUsuario().añadirpedido(p);
         logger.info("l'usuari ara te un pedido mes");
 
@@ -77,6 +72,19 @@ public class ProductManagerImpl implements ProductManager{
             c.getProducto().aumentarVendas(c.getCantidad());
         }
 
+
+    }
+
+    public Pedido Servirpedido(){
+
+        if (pila.size()==0){
+            logger.info("la cola esta vacia!!!");
+            return null;
+        }
+        else{
+            return pila.pop();
+
+        }
 
 
         //bucle sumar ventas
@@ -90,7 +98,7 @@ public class ProductManagerImpl implements ProductManager{
     }
 
 
-    public void listaproductosordenadoventas(){
+    public ArrayList<Producto> listaproductosordenadoventas(){
 
         ArrayList<Producto> productoslist = new ArrayList<Producto>(this.productos.values());
 
@@ -103,6 +111,8 @@ public class ProductManagerImpl implements ProductManager{
         });
         */
        Collections.sort(productoslist,Producto.Productoventascomparator);
+        logger.info("retorn vector ordenat");
+        return productoslist;
 
     }
 

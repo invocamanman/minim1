@@ -8,8 +8,8 @@ public interface ProductManager {
 
     public ArrayList<Producto> Ordenarprecio();
     public void Hacerpedido(String nombre, Vector<Comanda> comandas);
-    public void Servirpedido();
+    public Pedido Servirpedido();
     public Vector<Pedido> listapedidosrealizado(Usuario u);
-    public void listaproductosordenadoventas();
+    public ArrayList<Producto> listaproductosordenadoventas();
 
 }

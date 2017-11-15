@@ -35,6 +35,8 @@ public class AppTest
         comandas.add(c2);
 
        ProductManagerImpl.getInstance().Hacerpedido("juan", comandas);
+
+       //comrpavar cosas
     }
 
     @org.junit.Test
@@ -51,6 +53,8 @@ public class AppTest
 
         ProductManagerImpl.getInstance().Hacerpedido("juan", comandas);
         ProductManagerImpl.getInstance().Servirpedido();
+
+        //comrpavoar cosas
     }
 
 }
