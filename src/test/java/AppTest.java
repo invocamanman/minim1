@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class AppTest
 {
 
-    //ProductManagerImpl p =ProductManagerImpl.getInstance();
+
     @Before
     public void setUp()
     {
@@ -58,7 +58,7 @@ public class AppTest
 
        ProductManagerImpl.getInstance().Hacerpedido(p);
 
-       //comrpavar cosas
+
     }
 
     @org.junit.Test
@@ -68,7 +68,7 @@ public class AppTest
         Pedido p =ProductManagerImpl.getInstance().Servirpedido();
         assertEquals(null,ProductManagerImpl.getInstance().Servirpedido());
 
-        //comrpavoar cosas
+
     }
 
     @org.junit.Test
@@ -85,13 +85,25 @@ public class AppTest
         comandas.add(c2);
 
         Usuario u = new Usuario("juan");
-        Pedido p = new Pedido(u,comandas);
-        ProductManagerImpl.getInstance().Hacerpedido(p);
+        Pedido producto = new Pedido(u,comandas);
+        ProductManagerImpl.getInstance().Hacerpedido(producto);
+
+        Producto p3 = new Producto("pelota", (double)19);
+        Producto p4 = new Producto("jamooon", (double)18);
+
+        Comanda c3 = new Comanda(p3, 8);
+        Comanda c4 = new Comanda(p4, 3);
+        comandas.clear();
+        comandas.add(c3);
+        comandas.add(c4);
+        Pedido producto2 = new Pedido(u,comandas);
+        ProductManagerImpl.getInstance().Hacerpedido(producto2);
 
 
-        ArrayList<Pedido> a = ProductManagerImpl.getInstance().listapedidosrealizadousuario("juan");
+        ProductManagerImpl.getInstance().listapedidosrealizadousuario("juan");
 
-        //comrpavoar cosas
+
+
     }
 
 }

@@ -31,7 +31,7 @@ public class ProductManagerImpl implements ProductManager{
         cola = new LinkedList<Pedido>();
 
 
-        //añadir unos productos i ususairos a sus mapas y un pedido a la pila para pruebas
+        //añadir unos productos i ususairos a sus mapas
         Producto p1 = new Producto("bocata", (double)12);
         Producto p2 = new Producto("beguda", (double)13);
         productos.put("bocata",p1);
@@ -41,27 +41,13 @@ public class ProductManagerImpl implements ProductManager{
         Usuario u2 = new Usuario("marta");
         Usuario u3 = new Usuario("zarta");
         Usuario u4= new Usuario("juani");
+        Usuario u5= new Usuario("juano");
         usuarios.put("juan",u1);
         usuarios.put("marta",u2);
         usuarios.put("zarta",u3);
         usuarios.put("juani",u4);
-
-        /*salta aqui i cuando añado un nuevo ususairo
-        Comanda c1 = new Comanda(p1, 10);
-        Comanda c2 = new Comanda(p2, 20);
-        Vector<Comanda> comandas = new Vector<Comanda>();
-        comandas.add(c1);
-        comandas.add(c2);
-        Pedido p = new Pedido(u1,comandas);
-        this.Hacerpedido(p);
-        */
-
-
-
-
-
-
-    }
+        usuarios.put("juano",u5);
+            }
     public ArrayList<Producto>  Ordenarprecio(){
 
         logger.debug("Accion ordenar precio");

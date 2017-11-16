@@ -55,7 +55,7 @@ public class Producto implements Comparable<Producto>{
     @Override
     public int compareTo(Producto P) {
 
-        return (int)(this.precio-P.getPrecio());
+        return (int)(P.getPrecio()-this.precio);
     }
 
     public static Comparator<Producto> Productoventascomparator
@@ -65,7 +65,7 @@ public class Producto implements Comparable<Producto>{
 
 
 
-            return producto2.getVentas()-producto1.getVentas();
+            return producto1.getVentas()-producto2.getVentas();
 
         }
 
