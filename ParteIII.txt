@@ -1,0 +1,23 @@
+tabla pedido
+        (String) nombreusuario(clave foránea)
+	(int) idpedido(clave)
+        
+tabla usuario
+	(string) nombreusuario(clave)
+
+tabla Comanda
+	(String) nombreproducto(clave foránea)
+	(int)Cantidad
+	(int)idpedido (clave foránea)
+
+tabla producto
+  	(String) nombreproducto (clave)
+  	(int) precio
+
+	
+
+
+Relaciones:
+Usuario 1:Pedido M
+Pedido 1: Comanda M
+Comanda M: Producto1
