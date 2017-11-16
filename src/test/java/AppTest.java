@@ -16,7 +16,21 @@ public class AppTest
     @Before
     public void setUp()
     {
-        ProductManagerImpl.getInstance();//em``ieza por defecto con un pedido en la pila
+
+        ProductManagerImpl.getInstance();//empieza por defecto con un pedido en la pila
+        Producto p1 = new Producto("jamoon", (double)19);
+        Producto p2 = new Producto("bebidaa", (double)18);
+
+        Comanda c1 = new Comanda(p1, 10);
+        Comanda c2 = new Comanda(p2, 5);
+        Vector<Comanda> comandas = new Vector<Comanda>();
+        comandas.add(c1);
+        comandas.add(c2);
+
+        Usuario u = new Usuario("juanaco");
+        Pedido p = new Pedido(u,comandas);
+
+        ProductManagerImpl.getInstance().Hacerpedido(p);
     }
 
     @After
@@ -24,6 +38,7 @@ public class AppTest
     {
 
         ProductManagerImpl.getInstance().reiniciarSingleton();
+
     }
 
     @org.junit.Test

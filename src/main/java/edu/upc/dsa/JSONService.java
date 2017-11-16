@@ -20,7 +20,7 @@ public class JSONService {
     @GET
     @Path("/gotproductos/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Collection<Pedido> getproductosusuario(@PathParam("nombre") String nombre) {
+    public ArrayList<Pedido> getproductosusuario(@PathParam("nombre") String nombre) {
 
         Producto p1 = new Producto("bocata", (double)12);
         Producto p2 = new Producto("beguda", (double)13);
@@ -36,7 +36,8 @@ public class JSONService {
         comandas.add(c2);
         Pedido p = new Pedido(u1,comandas);
         ProductManagerImpl.getInstance().Hacerpedido(p);
-        return (Collection<Pedido>) ProductManagerImpl.getInstance().listapedidosrealizadousuario(nombre);
+
+        return ProductManagerImpl.getInstance().listapedidosrealizadousuario(nombre);
 
     }
 
@@ -79,11 +80,11 @@ public class JSONService {
     @Path("/servir")
     @Consumes(MediaType.APPLICATION_JSON)
     public Pedido servirpedido() {
-        Producto p1 = new Producto("bocata", (double)12);
+        Producto p1 = new Producto("bocataaaa", (double)12);
         Producto p2 = new Producto("beguda", (double)13);
 
 
-        Usuario u1= new Usuario("juan");
+        Usuario u1= new Usuario("juano");
 
 
         Comanda c1 = new Comanda(p1, 10);
@@ -93,6 +94,7 @@ public class JSONService {
         comandas.add(c2);
         Pedido p = new Pedido(u1,comandas);
         ProductManagerImpl.getInstance().Hacerpedido(p);
+
 
         return ProductManagerImpl.getInstance().Servirpedido();
 
