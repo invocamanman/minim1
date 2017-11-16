@@ -24,17 +24,19 @@ public class ProductManagerImpl implements ProductManager{
     }
 
     private ProductManagerImpl() {
+
+        logger.debug("Constructos: crea usuarios, productos y pone un pedido a la cola");
         this.productos = new HashMap<String,Producto>();
         this.usuarios = new HashMap<String,Usuario>();
         pila = new Stack<Pedido>();
 
+
+        //añadir unos productos i ususairos a sus mapas y un pedido a la pila para pruebas
         Producto p1 = new Producto("bocata", (double)12);
         Producto p2 = new Producto("beguda", (double)13);
         productos.put("bocata",p1);
         productos.put("beguda",p2);
 
-       // productos.add(p1);
-      //  productos.add(p2);
         Usuario u1= new Usuario("juan");
         Usuario u2 = new Usuario("marta");
         Usuario u3 = new Usuario("zarta");
@@ -42,11 +44,21 @@ public class ProductManagerImpl implements ProductManager{
         usuarios.put("marta",u2);
         usuarios.put("zarta",u3);
 
+        Comanda c1 = new Comanda(p1, 10);
+        Comanda c2 = new Comanda(p2, 20);
+        Vector<Comanda> comandas = new Vector<Comanda>();
+        comandas.add(c1);
+        comandas.add(c2);
+        Pedido p = new Pedido(u1,comandas);
+        this.Hacerpedido(p);
+
 
 
 
     }
     public ArrayList<Producto>  Ordenarprecio(){
+
+        logger.debug("Accion ordenar precio");
 
         ArrayList<Producto> productoslist = new ArrayList<Producto>();
         for (Producto o: this.productos.values()) {
@@ -54,35 +66,63 @@ public class ProductManagerImpl implements ProductManager{
 
         }
         Collections.sort(productoslist);
-        logger.info("retorn vector ordenat");
+        logger.info("la lista es:");
+        for (Producto o: productoslist)
+        {
+            logger.info(o.getNombre());
+        }
+
         return productoslist;
     }
 
 
-    public void Hacerpedido(String nombre, Vector<Comanda> comandas){
+    public void Hacerpedido(Pedido p){
 
-        logger.info("numero stacks abans"+pila.size());
-        Pedido p = new Pedido(usuarios.get(nombre),comandas);
+        //hace el pedido, sino exite algun usuario/objeto los añade al mapa
+        logger.error("inicio hacer pedido");
+
+        logger.error("numero stacks antes "+pila.size());
         pila.push(p);
-        logger.info("numero stacks despres"+pila.size());
-        p.getUsuario().añadirpedido(p);
-        logger.info("l'usuari ara te un pedido mes");
+        logger.error("numero stacks"+pila.size());
+
+        if (!this.usuarios.containsKey(p.getUsuario().getNombre()))
+        {
+            logger.error("añade el nuevo usuario al mapa: "+p.getUsuario().getNombre());
+            this.usuarios.put(p.getUsuario().getNombre(),p.getUsuario());
+        }
+        this.usuarios.get(p.getUsuario().getNombre()).añadirpedido(p);
+        logger.error("l'usuari ara te un pedido mes");
 
         for(Comanda c : p.getComandas()){
-            c.getProducto().aumentarVendas(c.getCantidad());
+            if (!this.productos.containsKey(c.getProducto().getNombre()))
+            {
+                logger.error("añade el nuevo producto al mapa: "+c.getProducto().getNombre());
+                this.productos.put(c.getProducto().getNombre(),c.getProducto());
+            }
+            this.productos.get(c.getProducto().getNombre()).aumentarVendas(c.getCantidad());
+            logger.error("el producto " + c.getProducto().getNombre() + " ha aumentado " + c.getCantidad());
         }
+
 
 
     }
 
     public Pedido Servirpedido(){
 
+        logger.info("Servir pedido");
+        logger.debug("Servir pedido");
+        logger.error("Servir pedido");
+
         if (pila.size()==0){
-            logger.info("la cola esta vacia!!!");
+            logger.error("la cola esta vacia!!!");
             return null;
         }
         else{
-            return pila.pop();
+            logger.info("tamaño de pila antes de hace pop" + pila.size());
+            Pedido p =pila.pop();
+            logger.info("tamaño de pila despues de hace pop" + pila.size());
+            return p;
+
 
         }
 
@@ -90,15 +130,34 @@ public class ProductManagerImpl implements ProductManager{
         //bucle sumar ventas
     }
 
-    public Vector<Pedido> listapedidosrealizado(Usuario u){
+    public ArrayList<Pedido> listapedidosrealizadousuario(String nombre){
 
-        logger.info("l'usuari ara te un pedido mes");
-        return u.getPedidos();
+        logger.error("inicio lista de pedidos realizados por usuario");
+
+        if (usuarios.containsKey(nombre)) {
+            int i = 1;
+            Usuario u = usuarios.get(nombre);
+            for (Pedido p : u.getPedidos()) {
+                logger.error("Pedido " + i);
+                for (Comanda c : p.getComandas()) {
+                    logger.error("Producto: " + c.getProducto().getNombre() + " Cantidad " + c.getCantidad());
+                }
+                i++;
+            }
+            return u.getPedidos();
+        }
+        else
+        {
+            logger.error("no existe esta usuario en el mapa, por tanto no tendra lista de pedidos");
+            return null;
+        }
 
     }
 
 
     public ArrayList<Producto> listaproductosordenadoventas(){
+
+        logger.info("inicio ordenar productor por ventas");
 
         ArrayList<Producto> productoslist = new ArrayList<Producto>(this.productos.values());
 
@@ -111,7 +170,11 @@ public class ProductManagerImpl implements ProductManager{
         });
         */
        Collections.sort(productoslist,Producto.Productoventascomparator);
-        logger.info("retorn vector ordenat");
+       logger.info("retorn vector ordenado por vendas:");
+        for (Producto o: productoslist)
+        {
+            logger.info(o.getNombre());
+        }
         return productoslist;
 
     }
@@ -127,6 +190,7 @@ public class ProductManagerImpl implements ProductManager{
 
     public void reiniciarSingleton()
     {
+        logger.info("reiniciar el singleton");
         productManagerimpl = null;
     }
 //ususario comanda, aqui respon

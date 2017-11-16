@@ -16,12 +16,28 @@ public class JSONService {
     public JSONService() {}
 
 
-/*
+
     @GET
     @Path("/gotproductos/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Vector<Pedido> getproductosusuario(@PathParam("nombre") String nombre) {
-        return ProductManagerImpl.getInstance().usuarios.get(nombre).getPedidos();
+    public Collection<Pedido> getproductosusuario(@PathParam("nombre") String nombre) {
+
+        Producto p1 = new Producto("bocata", (double)12);
+        Producto p2 = new Producto("beguda", (double)13);
+
+
+        Usuario u1= new Usuario("juani");
+
+
+        Comanda c1 = new Comanda(p1, 10);
+        Comanda c2 = new Comanda(p2, 20);
+        Vector<Comanda> comandas = new Vector<Comanda>();
+        comandas.add(c1);
+        comandas.add(c2);
+        Pedido p = new Pedido(u1,comandas);
+        ProductManagerImpl.getInstance().Hacerpedido(p);
+        return (Collection<Pedido>) ProductManagerImpl.getInstance().listapedidosrealizadousuario(nombre);
+
     }
 
 
@@ -49,37 +65,40 @@ public class JSONService {
 
 
     @POST
-    @Path("/post/hacer")
+    @Path("/hacer")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response hacerpedido() {
+    public Response hacerpedido(Pedido p) {
 
+
+        ProductManagerImpl.getInstance().Hacerpedido(p);
+
+        return Response.status(201).entity("hecho").build();
+    }
+
+    @GET
+    @Path("/servir")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Pedido servirpedido() {
         Producto p1 = new Producto("bocata", (double)12);
         Producto p2 = new Producto("beguda", (double)13);
+
+
+        Usuario u1= new Usuario("juan");
+
 
         Comanda c1 = new Comanda(p1, 10);
         Comanda c2 = new Comanda(p2, 20);
         Vector<Comanda> comandas = new Vector<Comanda>();
         comandas.add(c1);
         comandas.add(c2);
+        Pedido p = new Pedido(u1,comandas);
+        ProductManagerImpl.getInstance().Hacerpedido(p);
 
-        ProductManagerImpl.getInstance().Hacerpedido("juan", comandas);
+        return ProductManagerImpl.getInstance().Servirpedido();
 
-
-
-        return Response.status(201).entity("hecho").build();
     }
 
-    @POST
-    @Path("/post/servir")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response servirpedido() {
 
-        ProductManagerImpl.getInstance().Servirpedido();
-
-        return Response.status(201).entity("hecho").build();
-    }
-
-*/
 
 
 

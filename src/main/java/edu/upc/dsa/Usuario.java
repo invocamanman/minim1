@@ -1,5 +1,6 @@
 package edu.upc.dsa;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Usuario {
@@ -12,16 +13,16 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Vector<Pedido> getPedidos() {
+    public ArrayList<Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(Vector<Pedido> pedidos) {
+    public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
 
     String nombre;
-    Vector<Pedido> pedidos;
+    ArrayList<Pedido> pedidos;
 
 
     public void añadirpedido(Pedido p){
@@ -29,7 +30,10 @@ public class Usuario {
     }
 
     public Usuario(String nombre) {
-        pedidos = new Vector<Pedido>();
+        pedidos = new ArrayList<Pedido>();
         this.nombre = nombre;
+    }
+
+    public Usuario() {
     }
 }

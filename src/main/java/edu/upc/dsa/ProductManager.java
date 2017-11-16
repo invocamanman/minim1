@@ -7,9 +7,9 @@ import java.util.Vector;
 public interface ProductManager {
 
     public ArrayList<Producto> Ordenarprecio();
-    public void Hacerpedido(String nombre, Vector<Comanda> comandas);
+    public void Hacerpedido(Pedido p);
     public Pedido Servirpedido();
-    public Vector<Pedido> listapedidosrealizado(Usuario u);
+    public ArrayList<Pedido> listapedidosrealizadousuario(String nombre);
     public ArrayList<Producto> listaproductosordenadoventas();
 
 }

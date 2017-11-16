@@ -25,4 +25,7 @@ public class Comanda {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public Comanda() {
+    }
 }

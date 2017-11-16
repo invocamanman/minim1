@@ -48,7 +48,7 @@ public class Producto implements Comparable<Producto>{
     }
 
     public void aumentarVendas(int venta){
-        this.ventas=this.ventas+venta;
+        this.ventas = this.ventas+venta;
     }
 
 
