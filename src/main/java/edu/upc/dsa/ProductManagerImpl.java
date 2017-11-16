@@ -25,7 +25,7 @@ public class ProductManagerImpl implements ProductManager{
 
     private ProductManagerImpl() {
 
-        logger.debug("Constructos: crea usuarios, productos y pone un pedido a la cola");
+        logger.info("Constructor: crea usuarios, productos y pone un pedido a la cola");
         this.productos = new HashMap<String,Producto>();
         this.usuarios = new HashMap<String,Usuario>();
         cola = new LinkedList<Pedido>();
@@ -50,7 +50,7 @@ public class ProductManagerImpl implements ProductManager{
             }
     public ArrayList<Producto>  Ordenarprecio(){
 
-        logger.debug("Accion ordenar precio");
+        logger.info("Accion ordenar precio");
 
         ArrayList<Producto> productoslist = new ArrayList<Producto>();
         for (Producto o: this.productos.values()) {
@@ -121,7 +121,7 @@ public class ProductManagerImpl implements ProductManager{
         }
 
 
-        //bucle sumar ventas
+
     }
 
     public ArrayList<Pedido> listapedidosrealizadousuario(String nombre){
@@ -155,14 +155,6 @@ public class ProductManagerImpl implements ProductManager{
 
         ArrayList<Producto> productoslist = new ArrayList<Producto>(this.productos.values());
 
-        /*
-        Collections.sort(productos, new Comparator<Producto>() {
-            @Override
-            public int compare(Producto O1, Producto O2) {
-                return O2.getVentas()-O1.getVentas();
-            }
-        });
-        */
        Collections.sort(productoslist,Producto.Productoventascomparator);
        logger.info("retorn vector ordenado por vendas:");
         for (Producto o: productoslist)
@@ -173,20 +165,11 @@ public class ProductManagerImpl implements ProductManager{
 
     }
 
-
-
-
-
-
-
-
-
-
     public void reiniciarSingleton()
     {
         logger.info("reiniciar el singleton");
         productManagerimpl = null;
     }
-//ususario comanda, aqui respon
+
 
 }
