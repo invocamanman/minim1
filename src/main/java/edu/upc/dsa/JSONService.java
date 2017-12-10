@@ -1,5 +1,6 @@
 package edu.upc.dsa;
 
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,6 +42,16 @@ public class JSONService {
 
     }
 
+    @GET
+    @Path("/usuario/{nombre}/{pass}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public usuario1 pruebaandroid(@PathParam("nombre") String nombre, @PathParam("pass") String pass) {
+
+        usuario1 u = new usuario1(nombre, pass);
+
+        return u;
+
+    }
 
     @GET
     @Path("/gotproductosventas")
