@@ -26,7 +26,7 @@ public class JSONService {
 
         Usuario u1= new Usuario("juani");
 
-        Usuario u2= new Usuario("pepe");
+
 
         Comanda c1 = new Comanda(p1, 10);
         Comanda c2 = new Comanda(p2, 20);
@@ -34,9 +34,9 @@ public class JSONService {
         comandas.add(c1);
         comandas.add(c2);
         Pedido p = new Pedido(u1,comandas);
-        Pedido p22 = new Pedido(u2,comandas);
+
         ProductManagerImpl.getInstance().Hacerpedido(p);
-        ProductManagerImpl.getInstance().Hacerpedido(p22);
+
 
         return ProductManagerImpl.getInstance().listapedidosrealizadousuario(nombre);
 
