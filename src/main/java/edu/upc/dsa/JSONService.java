@@ -55,7 +55,7 @@ public class JSONService {
     @GET
     @Path("/gotproductosprecio")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Producto> getProductoprecio() {
+    public ArrayList<Producto> getProductoprecio() {
 
 
         return ProductManagerImpl.getInstance().Ordenarprecio();
