@@ -4,10 +4,7 @@ package edu.upc.dsa;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Vector;
+import java.util.*;
 
 @Path("/json")
 public class JSONService {
@@ -42,16 +39,7 @@ public class JSONService {
 
     }
 
-    @GET
-    @Path("/usuario/{nombre}/{pass}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public usuario1 pruebaandroid(@PathParam("nombre") String nombre, @PathParam("pass") String pass) {
 
-        usuario1 u = new usuario1(nombre, pass);
-
-        return u;
-
-    }
 
     @GET
     @Path("/gotproductosventas")
@@ -67,10 +55,10 @@ public class JSONService {
     @GET
     @Path("/gotproductosprecio")
     @Produces(MediaType.APPLICATION_JSON)
-    public Collection<Producto> getProductoprecio() {
+    public List<Producto> getProductoprecio() {
 
 
-        return (Collection<Producto>)ProductManagerImpl.getInstance().Ordenarprecio();
+        return ProductManagerImpl.getInstance().Ordenarprecio();
 
 
     }
@@ -109,6 +97,17 @@ public class JSONService {
 
         return ProductManagerImpl.getInstance().Servirpedido();
 
+    }
+
+    @POST
+    @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public KeyUser login(Usuario user)
+    {
+        KeyUser key = new KeyUser();
+        key.setKey(1);
+        return key;
     }
 
 

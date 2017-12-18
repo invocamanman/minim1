@@ -23,7 +23,15 @@ public class Usuario {
 
     String nombre;
     ArrayList<Pedido> pedidos;
+    String password;
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public void añadirpedido(Pedido p){
         pedidos.add(p);
@@ -32,6 +40,7 @@ public class Usuario {
     public Usuario(String nombre) {
         pedidos = new ArrayList<Pedido>();
         this.nombre = nombre;
+
     }
 
     public Usuario() {
